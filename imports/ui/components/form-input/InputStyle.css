@@ -1,0 +1,9 @@
+.input-content {
+    display: flex;
+    flex-direction: column;
+    /* margin-bottom: 8px; */
+    width: 100%;
+}
+.input-content > label {
+    margin-bottom: 4px;
+}

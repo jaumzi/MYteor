@@ -1,0 +1,8 @@
+
+.default-layout-content {
+    max-width: 400px;
+    margin: auto;
+    height: 100%;
+    display: grid;
+    grid-template-rows: 100px 1fr;
+}

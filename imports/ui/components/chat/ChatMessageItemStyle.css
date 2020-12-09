@@ -1,0 +1,31 @@
+.msg-item-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 8px;
+    border-radius: 10px;
+    max-width: 70%;
+}
+
+.msg-item-content.sended {
+    float: right;
+    background-color: #b2ddff;
+}
+.msg-item-content.received {
+    float: left;
+    background-color: #a7ffab;
+}
+
+.msg-item-content > p {
+    margin: 0;
+    padding: 0;
+}
+
+.msg-item-description {
+    font-size: 0.9rem;
+}
+
+.msg-item-date {
+    color: #909090;
+    font-size: 0.8rem;
+}

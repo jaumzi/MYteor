@@ -1,0 +1,33 @@
+.chat-item-text {
+    width: 100%;
+    padding: 0 8px;
+}
+.item-chat {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    margin-bottom: 8px;
+    border-bottom: 2px solid #3f51b5;
+
+    cursor: pointer;
+}
+.item-chat:hover {
+    background-color: #ccefff;
+}
+.item-chat:active {
+    background-color: #81d8ff;
+}
+
+.chat-btn-delete {
+    background-color: brown;
+    color: white;
+}
+
+.avatar {
+    min-width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-color: #c7c7c7;
+    border: 2px solid black;
+}
+
