@@ -15,10 +15,9 @@ function ChatMessageFormComponent(props) {
         const form = new FormUtils(formRef);
 
         let msg = form.getData('newMsg');
-        console.log(msg);
 
         if (!msg) {
-            console.log('Valor inválido');
+            console.log('Valor inválido', msg);
             return;
         };
 

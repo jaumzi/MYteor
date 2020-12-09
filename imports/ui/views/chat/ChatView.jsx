@@ -11,7 +11,6 @@ const ChatView = () => {
         chatSelected: undefined
     });
     const { chatSelected } = state;
-    console.log(chatSelected);
 
     const selectChat = (chat) => {
         setState(prev => ({

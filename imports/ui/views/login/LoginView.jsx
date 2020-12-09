@@ -33,8 +33,6 @@ const LoginView = () => {
     return (
         <DefaultLayout title="Entrar" >
             <form ref={formRef} onSubmit={handleSubmit} >
-                <br />
-                <br />
                 <div>
                     {JSON.stringify({ nome: 'user1', senha: '123' })}
                     <br />

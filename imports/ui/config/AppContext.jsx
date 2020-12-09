@@ -1,9 +1,8 @@
-import React, { createContext, useEffect, useState } from 'react';
+import React, { createContext, useState } from 'react';
 import Loading from '../components/loading/Loading';
-import { useTracker } from 'meteor/react-meteor-data';
 import { Meteor } from 'meteor/meteor';
 import EnumPresence from '../util/EnumPresence';
-import { setUserPresenceStatus } from '../util/hoc/HocUserPresence';
+import { setUserPresenceStatus } from '../util/hoc/HocUser';
 
 const AppContext = createContext({
     loading: false,
@@ -45,7 +44,7 @@ function AppContextProviderComponent(props) {
                 ...state,
                 loadingMsg,
                 login,
-                logout
+                logout,
             }}
         >
             {loading && <Loading text={loadingText} />}

@@ -1,17 +1,16 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { ROUTES } from '../../config/RoutesConfig';
-import { AppContext } from '../../config/AppContext';
-// import { AppContext } from '../../config/AppContext';
+import { withUserAplication } from '../../util/hoc/HocUser';
 
 // metodo para pegar a permissão dentro do obj user
 // const GetUserPermission = user => user?.permission;
 
-function DefaultRoute(props) {
-  const { component: Component, permissions = [], isProtected, ...rest } = props;
+function DefaultRouteComponent(props) {
+  const { component: Component, permissions = [], isProtected, userLogged, aplicationInit, ...rest } = props;
 
-  const ctx = useContext(AppContext);
-  const { userLogged } = ctx;
+  // const ctx = useContext(AppContext);
+  // const { userLogged, aplicationInit } = ctx;
 
   function canPermit() {
     // if (aplicationInit && (
@@ -25,14 +24,14 @@ function DefaultRoute(props) {
     //   return true;
     // }
     // return false;
-    
-    // if (permissions.length === 0 && !isProtected) {
-    //   return true;
-    // }
-    // if (userLogged === null) {
-    // // null quando não tem login, undefined quando nao carregou
-    //   return false;
-    // }
+
+    if (permissions.length === 0 && !isProtected) {
+      return true;
+    }
+    if (userLogged === null) {
+      // null quando não tem login, undefined quando nao carregou
+      return false;
+    }
     return true;
   }
 
@@ -47,12 +46,18 @@ function DefaultRoute(props) {
     <Route
       {...rest}
       render={(propsRender, context) =>
-        permit
-          ? <Component {...props} {...propsRender} {...context} {...rest} />
-          : <Redirect to={ROUTES.LOGIN.src()} />
+        aplicationInit
+          ? (
+            permit
+              ? <Component {...props} {...propsRender} {...context} {...rest} />
+              : <Redirect to={ROUTES.LOGIN.src()} />
+          )
+          : null
       }
     />
   );
 }
+
+const DefaultRoute = withUserAplication(DefaultRouteComponent);
 
 export default DefaultRoute;

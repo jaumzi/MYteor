@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { withTracker } from 'meteor/react-meteor-data';
 import { AppContext } from '../../config/AppContext';
 import { ROUTES } from '../../config/RoutesConfig';
-import { withUserPresence } from '../../util/hoc/HocUserPresence';
+import { withUserPresence } from '../../util/hoc/HocUser';
 import { prepareComponent } from '../../util/hoc/HocComponents';
 
 function InfoUserComponent(props) {

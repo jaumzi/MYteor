@@ -5,7 +5,6 @@ import ChatRoomHeader from './ChatRoomHeader';
 
 function ChatRoom(props) {
     const { chat } = props;
-    console.log(chat);
 
     return (
         <>

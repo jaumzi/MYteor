@@ -5,7 +5,6 @@ import { prepareComponent } from '../../util/hoc/HocComponents';
 
 function ChatRoomHeader(props) {
     const { userChat } = props;
-    console.log(userChat.profile);
 
     return (
         <>

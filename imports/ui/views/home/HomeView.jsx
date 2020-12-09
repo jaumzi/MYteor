@@ -6,7 +6,6 @@ import AdminLayout from '../../layout/admin/AdminLayout';
 import './HomeViewStyle.css';
 
 const HomeView = () => {
-
     return (
         <>
             <AdminLayout title="Início" >
