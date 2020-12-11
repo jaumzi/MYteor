@@ -1,31 +1,55 @@
 .msg-item-content {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 8px;
-    border-radius: 10px;
-    max-width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 6px;
+  border-radius: 10px;
+  max-width: 70%;
+  gap: 4px;
 }
 
 .msg-item-content.sended {
-    float: right;
-    background-color: #b2ddff;
-}
-.msg-item-content.received {
-    float: left;
-    background-color: #a7ffab;
+  float: right;
+  background-color: #b2ddff;
 }
 
-.msg-item-content > p {
-    margin: 0;
-    padding: 0;
+.msg-item-content.received {
+  float: left;
+  background-color: #a7ffab;
+}
+
+.msg-item-content>p {
+  margin: 0;
+  padding: 0;
 }
 
 .msg-item-description {
-    font-size: 0.9rem;
+  font-size: 0.8rem;
+  display: flex;
+  gap: 8px;
+}
+
+.msg-item-description-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-right: 6px;
 }
 
 .msg-item-date {
-    color: #909090;
-    font-size: 0.8rem;
+  color: #909090;
+  font-size: 0.7rem;
+}
+
+.msg-item-avatar {
+  min-width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: #c7c7c7;
+  border: 2px solid black;
+}
+
+.msg-info-username {
+  font-weight: bold;
+  font-size: 0.8rem;
 }

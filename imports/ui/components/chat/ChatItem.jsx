@@ -4,8 +4,7 @@ import EnumPresence from '../../util/EnumPresence';
 import './ChatItemStyle.css';
 
 const ChatItem = (props) => {
-    const { chat, onChatClick } = props;
-
+    const { chat, isRegistered, onChatClick } = props;
     const userChat = chat.users[0];
 
     return (

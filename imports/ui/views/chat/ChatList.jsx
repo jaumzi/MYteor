@@ -1,44 +1,70 @@
 import React from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
-import { ChatCollection } from '../../../api/ChatCollection';
 import ChatItem from '../../components/chat/ChatItem';
 import { prepareComponent } from '../../util/hoc/HocComponents';
+import { ChatCollection } from '../../../modules/chat/api/Collections';
 
 
 function ChatList(props) {
-    const { onSelectChat, data } = props;
-    
-    return (
-        <>
-            <h3>Conversas:</h3>
-            <ul className="chat-list">
-                {data.map((chat) => (
-                    <ChatItem key={chat._id} chat={chat} onChatClick={onSelectChat} />
-                ))}
-            </ul>
-        </>
-    );
+  const { onSelectChat, chats, users } = props;
+
+  // console.log(chats, users);
+  const handleCreateChat = (data) => {
+    console.log(data);
+
+  }
+
+  return (
+    <>
+      <div className="chat-list" >
+
+        <h3>Pessoas:</h3>
+        <ul>
+          {chats.map((chat) => (
+            <ChatItem key={chat._id} chat={chat} onChatClick={handleCreateChat} isRegistered={false} />
+          ))}
+        </ul>
+
+        <h3>Conversas:</h3>
+        <ul>
+          {chats.map((chat) => (
+            <ChatItem key={chat._id} chat={chat} onChatClick={onSelectChat} isRegistered={true} />
+          ))}
+        </ul>
+
+      </div>
+    </>
+  );
 }
 
 export default withTracker((props) => {
-    const userLoggedId = Meteor.userId();
+  const userLoggedId = Meteor.userId();
 
-    let data = undefined;
-    if (userLoggedId && Meteor.subscribe('chats', userLoggedId).ready()) {
-        data = ChatCollection.find({}, {
-            sort: { createdAt: -1 },
-            transform: function (chat) {
-                const userId = chat.users.filter(id => id !== userLoggedId)[0];
-                const { username, _id, profile } = Meteor.users.findOne({ _id: userId });
-                chat.users = [{ username, _id, profile }];
-                return chat;
-            }
-        }).fetch();
-    }
+  let users, chats;
+  if (userLoggedId && Meteor.subscribe('chats', userLoggedId).ready()) {
+    chats = ChatCollection.find({}, {
+      sort: { createdAt: -1 },
+      transform: function (chat) {
+        const userId = chat.users.filter(id => id !== userLoggedId)[0];
+        const { username, _id, profile } = Meteor.users.findOne({ _id: userId });
+        chat.users = [{ username, _id, profile }];
+        return chat;
+      }
+    }).fetch();
 
-    return {
-        ...props,
-        userLoggedId,
-        data
-    };
-})(prepareComponent(ChatList, { awaits: ['userLoggedId', 'data'] }));
+    users = Meteor.users.find({}, {
+      transform: function (user) {
+        const { username, _id, profile } = user;
+        return { username, _id, profile };
+      }
+    }).fetch();
+
+  }
+
+  return {
+    ...props,
+    userLoggedId,
+    chats,
+    users
+  };
+})(prepareComponent(ChatList, { awaits: ['userLoggedId', 'chats', 'users'] }));

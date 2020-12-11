@@ -1,9 +1,7 @@
-import { Mongo } from 'meteor/mongo';
 import { Meteor } from 'meteor/meteor';
-import { ChatCollection, ChatMessageCollection } from '../ChatCollection';
+import { ChatCollection, ChatMessageCollection } from './Collections';
 
 Meteor.publish('chats', userId => {
-
 
     return [
         Meteor.users.find({}),
@@ -18,7 +16,6 @@ Meteor.publish('chat-messages', ({ userId, chatRoomId }) => {
     if(!userId || !chatRoomId) {
         return null;
     }
-
 
     return [
         Meteor.users.find({}),
