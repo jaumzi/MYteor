@@ -3,6 +3,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 import ChatItem from '../../components/chat/ChatItem';
 import { prepareComponent } from '../../util/hoc/HocComponents';
 import { ChatCollection } from '../../../modules/chat/api/ChatCollections';
+import PersonItem from '../../components/chat/PersonItem';
 
 
 function ChatList(props) {
@@ -20,8 +21,9 @@ function ChatList(props) {
 
         <h3>Pessoas:</h3>
         <ul>
-          {chats.map((chat) => (
-            <ChatItem key={chat._id} chat={chat} onChatClick={handleCreateChat} isRegistered={false} />
+          {console.log(users)}
+          {users.map((u) => (
+            <PersonItem key={u._id} person={u} isRegistered={false} />
           ))}
         </ul>
 
@@ -58,7 +60,6 @@ export default withTracker((props) => {
         return { username, _id, presence };
       }
     }).fetch();
-
   }
 
   return {

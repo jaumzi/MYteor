@@ -6,7 +6,7 @@ Meteor.startup(() => {
   if(Meteor.isServer) {
 
     const account_name_1 = 'user1';
-    const account_1 = Accounts.findUserByUsername(account_name_1);
+    const account_1 = Accounts.findUserByEmail(account_name_1 + '@mail.com');
     if (!account_1) {
       Accounts.createUser({
         name: account_name_1,
@@ -17,7 +17,7 @@ Meteor.startup(() => {
     }
 
     const account_name_2 = 'user2';
-    const account_2 = Accounts.findUserByUsername(account_name_2);
+    const account_2 = Accounts.findUserByEmail(account_name_2 + '@mail.com'); 
     if (!account_2) {
       Accounts.createUser({
         name: account_name_2,
@@ -27,8 +27,9 @@ Meteor.startup(() => {
       });
     }
 
-    const user_1 = Accounts.findUserByUsername(account_name_1);
-    const user_2 = Accounts.findUserByUsername(account_name_2);
+    const user_1 = Accounts.findUserByEmail(account_name_1 + '@mail.com');
+    const user_2 = Accounts.findUserByEmail(account_name_2 + '@mail.com');   
+    console.log(user_1, user_2)
     const findChat = ChatCollection.find({
       "users": { "$in": [user_1._id, user_2._id] }
     });
