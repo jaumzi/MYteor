@@ -1,6 +1,6 @@
 import React from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
-import EnumPresence from '../../util/EnumPresence';
+import EnumPresence from '../../../modules/user/util/EnumPresence';
 import { prepareComponent } from '../../util/hoc/HocComponents';
 
 function ChatRoomHeader(props) {
@@ -12,12 +12,12 @@ function ChatRoomHeader(props) {
 
             <div className="user-info-content" >
                 <span className="chat-text">
-                    {userChat.username} ({userChat?.profile?.presenceStatus ?? EnumPresence.OFFLINE})
+                    {userChat.username} ({userChat?.profile?.presence?.status ?? EnumPresence.OFFLINE})
                     <span className="" ></span>
                 </span>
-                {userChat.profile.presenceStatus !== EnumPresence.ONLINE && (
+                {userChat?.profile?.presence && userChat?.profile?.presence?.status !== EnumPresence.ONLINE && (
                     <span className="user-last-online" >
-                        Ultima vez online em: {new Date(userChat.profile.lastOnlineDate).toLocaleString()}
+                        Ultima vez online em: {new Date(userChat?.profile?.presence?.lastOnlineDate).toLocaleString()}
                     </span>
                 )}
             </div>

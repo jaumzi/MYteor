@@ -7,33 +7,34 @@ import { withUserPresence } from '../../util/hoc/HocUser';
 import { prepareComponent } from '../../util/hoc/HocComponents';
 
 function InfoUserComponent(props) {
-    const { userLogged } = props;
+  const { userLogged } = props;
 
-    const history = useHistory();
-    const ctx = useContext(AppContext);
-    const { logout } = ctx;
+  const history = useHistory();
+  const ctx = useContext(AppContext);
+  const { logout } = ctx;
 
-    const handleLogout = () => {
-        logout();
-        history.push(ROUTES.LOGIN.src());
-    };
+  const handleLogout = () => {
+    logout();
+    history.push(ROUTES.LOGIN.src());
+  };
 
-    return (
-        <>
-            <div className="header-layout" >
-                <p>{`${userLogged.username} (${userLogged.profile.presenceStatus})`}</p>
-                <button onClick={handleLogout}>Sair</button>
-            </div>
-        </>
-    );
+  return (
+    <>
+      <div className="header-layout" >
+        <p>{`${userLogged.username} (${userLogged?.profile?.presence?.status})`}</p>
+        <button onClick={handleLogout}>Sair</button>
+      </div>
+    </>
+  );
 }
 
 const InfoUser = withTracker((props) => {
-    const userLogged = Meteor.user();
-    return {
-        ...props,
-        userLogged
-    };
+  const userLogged = Meteor.user();
+  console.log(userLogged?.profile?.presence);
+  return {
+    ...props,
+    userLogged
+  };
 })(prepareComponent(withUserPresence(InfoUserComponent), { awaits: ['userLogged'] }));
 
 export default InfoUser;

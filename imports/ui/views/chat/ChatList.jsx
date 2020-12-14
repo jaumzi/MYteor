@@ -2,7 +2,7 @@ import React from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
 import ChatItem from '../../components/chat/ChatItem';
 import { prepareComponent } from '../../util/hoc/HocComponents';
-import { ChatCollection } from '../../../modules/chat/api/Collections';
+import { ChatCollection } from '../../../modules/chat/api/ChatCollections';
 
 
 function ChatList(props) {
@@ -46,16 +46,16 @@ export default withTracker((props) => {
       sort: { createdAt: -1 },
       transform: function (chat) {
         const userId = chat.users.filter(id => id !== userLoggedId)[0];
-        const { username, _id, profile } = Meteor.users.findOne({ _id: userId });
-        chat.users = [{ username, _id, profile }];
+        const { username, _id, presence } = Meteor.users.findOne({ _id: userId });
+        chat.users = [{ username, _id, presence }];
         return chat;
       }
     }).fetch();
 
     users = Meteor.users.find({}, {
       transform: function (user) {
-        const { username, _id, profile } = user;
-        return { username, _id, profile };
+        const { username, _id, presence } = user;
+        return { username, _id, presence };
       }
     }).fetch();
 

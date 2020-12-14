@@ -1,6 +1,6 @@
 import React from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
-import { ChatCollection, ChatMessageCollection } from '../../../modules/chat/api/Collections';
+import { ChatCollection, ChatMessageCollection } from '../../../modules/chat/api/ChatCollections';
 import ChatMessageItem from '../../components/chat/ChatMessageItem';
 import { prepareComponent } from '../../util/hoc/HocComponents';
 
@@ -39,8 +39,8 @@ export default withTracker((props) => {
             user = userLogged;
           }
 
-          const { username, _id, profile } = user;
-          chatMsg.user = { username, _id, profile };
+          const { username, _id, presence } = user;
+          chatMsg.user = { username, _id, presence };
 
           return chatMsg;
         }

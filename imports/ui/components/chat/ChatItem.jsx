@@ -1,5 +1,5 @@
 import React, { memo, } from 'react';
-import EnumPresence from '../../util/EnumPresence';
+import EnumPresence from '../../../modules/user/util/EnumPresence';
 
 import './ChatItemStyle.css';
 

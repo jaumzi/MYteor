@@ -3,7 +3,7 @@ import Input from '../../components/form-input/Input';
 import FormUtils from '../../util/FormUtils';
 import { withTracker } from 'meteor/react-meteor-data';
 import { prepareComponent } from '../../util/hoc/HocComponents';
-import { ChatMessageCollection } from '../../../modules/chat/api/Collections';
+import { ChatMessageCollection } from '../../../modules/chat/api/ChatCollections';
 
 function ChatMessageFormComponent(props) {
     const formRef = useRef();
