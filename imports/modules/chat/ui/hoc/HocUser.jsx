@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { Meteor } from 'meteor/meteor';
-import EnumPresence from '../../../modules/user/util/EnumPresence';
+import EnumPresence from '../../../user/util/EnumPresence';
 import { useTracker } from 'meteor/react-meteor-data';
-import { setUserstatus } from '../../../modules/user/util/UserPresenceUtil';
+import { setUserstatus } from '../../../user/util/UserPresenceUtil';
 
 const withUserAplication = (Component) => {
 

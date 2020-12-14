@@ -1,4 +1,4 @@
-export const exampleSch = {
+export const ChatSch = {
   title: {
     type: String,
     label: 'Título',

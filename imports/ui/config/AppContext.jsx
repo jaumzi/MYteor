@@ -2,7 +2,7 @@ import React, { createContext, useState } from 'react';
 import Loading from '../components/loading/Loading';
 import { Meteor } from 'meteor/meteor';
 import EnumPresence from '../../modules/user/util/EnumPresence';
-import { setUserstatus } from '../util/hoc/HocUser';
+import { setUserstatus } from '../../modules/chat/ui/hoc/HocUser';
 
 const AppContext = createContext({
   loading: false,
@@ -34,15 +34,10 @@ function AppContextProviderComponent(props) {
     Meteor.loginWithPassword(name, password, (err) => treatment(err));
   }
   const logout = () => {
-    const user = Meteor.user();
-    console.log({
-      ...user?.profile?.presence,
+    setUserstatus(Meteor.userId(), {
       status: EnumPresence.OFFLINE
     });
-    setUserstatus(user._id, {
-      ...user?.profile?.presence,
-      status: EnumPresence.OFFLINE
-    });
+
     Meteor.logout();
   }
 

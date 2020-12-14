@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
+import { withUserAplication } from '../../../modules/chat/ui/hoc/HocUser';
 import { ROUTES } from '../../config/RoutesConfig';
-import { withUserAplication } from '../../util/hoc/HocUser';
 
 // metodo para pegar a permissão dentro do obj user
 // const GetUserPermission = user => user?.permission;

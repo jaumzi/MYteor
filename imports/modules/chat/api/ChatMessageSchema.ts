@@ -1,4 +1,4 @@
-export const exampleSch = {
+export const ChatMessageSch = {
   chat_id: {
     type: String,
     label: 'Descrição',
